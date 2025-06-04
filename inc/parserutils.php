@@ -715,6 +715,10 @@ function p_get_renderer($mode)
     /** @var PluginController $plugin_controller */
     global $conf, $plugin_controller;
 
+    if ($mode === 'xhtml' && class_exists('Doku_Renderer_markdown')) {
+        return new Doku_Renderer_markdown();
+    }
+
     $rname = empty($conf['renderer_' . $mode]) ? $mode : $conf['renderer_' . $mode];
     $rclass = "Doku_Renderer_$rname";
 
