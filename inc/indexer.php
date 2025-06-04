@@ -11,12 +11,31 @@
 use dokuwiki\Utf8\Clean;
 use dokuwiki\Extension\Event;
 use dokuwiki\Search\Indexer;
+use League\CommonMark\CommonMarkConverter;
 
 // Version tag used to force rebuild on upgrade
 define('INDEXER_VERSION', 8);
 
 // set the minimum token length to use in the index (note, this doesn't apply to numeric tokens)
 if (!defined('IDX_MINWORDLENGTH')) define('IDX_MINWORDLENGTH', 2);
+
+/**
+ * Convert Markdown source to plain text for indexing and search
+ *
+ * @param string $markdown
+ * @return string
+ */
+function markdown_to_text(string $markdown): string
+{
+    if (class_exists(CommonMarkConverter::class)) {
+        $converter = new CommonMarkConverter();
+        $html = $converter->convert($markdown)->getContent();
+        return trim(html_entity_decode(strip_tags($html)));
+    }
+
+    // very simple fallback stripping common Markdown punctuation
+    return trim(preg_replace('/[*_`#>\-\[\]!()]/', ' ', $markdown));
+}
 
 /**
  * Version of the indexer taking into consideration the external tokenizer.
@@ -186,7 +205,10 @@ function idx_addPage($page, $verbose = false, $force = false)
 
     $data = ['page' => $page, 'body' => $body, 'metadata' => $metadata, 'pid' => $pid];
     $evt = new Event('INDEXER_PAGE_ADD', $data);
-    if ($evt->advise_before()) $data['body'] = $data['body'] . " " . rawWiki($page);
+    if ($evt->advise_before()) {
+        $raw = rawWiki($page);
+        $data['body'] .= ' ' . markdown_to_text($raw);
+    }
     $evt->advise_after();
     unset($evt);
     extract($data);

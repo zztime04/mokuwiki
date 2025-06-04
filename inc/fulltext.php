@@ -103,7 +103,7 @@ function _ft_pageSearch(&$data)
                     $evdata = [
                         'id' => $id,
                         'phrase' => $phrase,
-                        'text' => rawWiki($id)
+                        'text' => markdown_to_text(rawWiki($id))
                     ];
                     $evt = new Event('FULLTEXT_PHRASE_MATCH', $evdata);
                     if ($evt->advise_before() && $evt->result !== true) {
@@ -450,7 +450,7 @@ function ft_pagemtimesorter($a, $b)
  */
 function ft_snippet($id, $highlight)
 {
-    $text = rawWiki($id);
+    $text = markdown_to_text(rawWiki($id));
     $text = str_replace("\xC2\xAD", '', $text);
      // remove soft-hyphens
     $evdata = [
