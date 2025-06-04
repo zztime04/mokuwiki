@@ -1,0 +1,14 @@
+/* Basic Markdown styling */
+.markdown-body {
+    line-height: 1.5;
+    font-size: 1em;
+}
+.markdown-body pre {
+    background: #f7f7f7;
+    padding: 0.5em;
+    overflow: auto;
+}
+.markdown-body code {
+    background: #f2f2f2;
+    padding: 2px 4px;
+}
