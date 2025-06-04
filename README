@@ -8,6 +8,9 @@ at https://www.dokuwiki.org/
 For Installation Instructions see
 https://www.dokuwiki.org/install
 
+This version renders pages in Markdown. See `docs/MIGRATION_TO_MARKDOWN.md`
+for converting existing pages.
+
 DokuWiki - 2004-2024 (c) Andreas Gohr <andi@splitbrain.org>
                          and the DokuWiki Community
 See COPYING and file headers for license info
