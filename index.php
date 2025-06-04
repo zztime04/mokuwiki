@@ -10,6 +10,8 @@
  * Usage example:
  *
  *   php -S localhost:8000 index.php
+
+ * All wiki pages are expected to contain Markdown markup.
  *
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Andreas Gohr <andi@splitbrain.org>
