@@ -1,0 +1,13 @@
+COMPOSER_VENDOR_DIR: vendor
+SHARED_EXTENSIONS:
+  - name: VisualEditor
+    type: composer
+    source: mediawiki/visualeditor:*
+EXTENSIONS:
+  - name: SemanticMediaWiki
+    type: composer
+    source: semantic-media-wiki/semantic-media-wiki:~3.3
+  - name: CustomSkin
+    type: archive
+    source: https://example.com/skins/CustomSkin-1.0.2.tar.gz
+    version: 1.0.2

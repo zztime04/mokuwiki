@@ -1,0 +1,10 @@
+INSTANCE_NAME: example
+WEBROOT: /var/www/html/example
+SCRIPT_PATH: /example
+MW_VERSION: 1.43.3
+DB_NAME: example_db
+DB_USER: example_user
+DB_PASS: changeMe
+ADMIN_USER: admin
+ADMIN_PASS: changeMe
+ADMIN_EMAIL: admin@example.com
